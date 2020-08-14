@@ -9,7 +9,12 @@
     "lite": "lite-server",
     "scss": "node-sass -o css/ css/",
     "watch:scss": "onchange \"css/*.scss\" -- npm run scss",
-    "watch:all": "parallelshell \"npm run watch:scss\" \"npm run lite\""
+    "watch:all": "parallelshell \"npm run watch:scss\" \"npm run lite\"",
+    "clean": "rimraf dist",
+    "copyfronts": "copyfiles -f node_modules/font-awesome/fonts/* dist/fonts",
+    "imagemin": "imagemin img/* --out-dir dist/img/",
+    "usemin": "usemin contactus.html -d dist -o dist/contactus.html --htmlmin true && usemin index.html -d dist -o dist/index.html --htmlmin true && usemin aboutus.html -d dist -o dist/aboutus.html --htmlmin true",
+    "build": "npm run clean && npm run imagemin && npm run copyfronts && npm run usemin"
   },
   "author": "",
   "license": "ISC",
@@ -17,17 +22,25 @@
     "lite-server": "^2.3.0",
     "node-sass": "^4.14.1",
     "onchange": "^7.0.2",
-    "parallelshell": "^3.0.2"
+    "parallelshell": "^3.0.2",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
     "bootstrap-social": "^5.1.1",
+    "copyfiles": "^2.3.0",
+    "cssmin": "^0.4.3",
     "font-awesome": "^4.7.0",
+    "htmlmin": "0.0.7",
+    "imagemin": "^7.0.1",
+    "imagemin-cli": "^6.0.0",
     "install": "^0.13.0",
     "jquery": "^3.3.1",
     "less": "^3.12.2",
     "npm": "^6.14.6",
     "popper.js": "^1.12.9",
-    "sass": "^1.26.10"
+    "sass": "^1.26.10",
+    "uglifyjs": "^2.4.11",
+    "usemin-cli": "^0.6.0"
   }
 }
